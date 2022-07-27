@@ -15,31 +15,41 @@ const listFactoryFromArray = (arr) => {
   let head;
   arr.forEach((item, i) => {
     if (i === 0) {
-      head = {val: item, next: null };
+      head = { val: item, next: null };
       current = head;
     } else {
-      current.next = {val: item, next: null};
+      current.next = { val: item, next: null };
       current = current.next;
     }
   });
   return head;
 }
 
-let arr = [1,2,3];
+let arr = [1, 2, 3];
 let node = listFactoryFromArray(arr);
 let anotherNode = listFactoryFromArray([5])
 
+// const addNodeEnd = (node, anotherNode) => {
+//   let pointer = node;
+//   while (pointer) {
+//     pointer = pointer.next;
+//     if (!pointer.next) {
+//       pointer.next = anotherNode;
+//       break;
+//     }
+//   }
+//   return node;
+// };
+
+//Refactor
 const addNodeEnd = (node, anotherNode) => {
   let pointer = node;
-  while(pointer) {
+  while (pointer.next) {
     pointer = pointer.next;
-    if (!pointer.next) {
-      pointer.next = anotherNode;
-      break;
-    }
   }
+  pointer.next = anotherNode;
   return node;
-};
+}
 
 const logList = head => {
   let pointer = head;
